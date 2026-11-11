@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Админка — Ресторан Emirat</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314110c'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='30' font-weight='700' fill='%23d6a74e' text-anchor='middle'%3EE%3C/text%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+:root{--bg:#14110c;--s1:#1d1912;--s2:#282218;--line:#3b3224;--text:#f6efe2;--muted:#b5a88f;--acc:#d6a74e;--ok:#3ad07f;--red:#ff6b6b;--wa:#1fae5b}
+body{background:var(--bg);color:var(--text);font:400 15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh}
+button,input,select,textarea{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer}
+a{color:inherit}
+.wrap{max-width:900px;margin:0 auto;padding:0 14px}
+input,select,textarea{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:11px;font-size:16px;padding:10px 12px;min-width:0}
+textarea{resize:vertical;line-height:1.45;font-size:14.5px}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--acc)}
+.fld{display:grid;gap:5px;font-size:13px;color:var(--muted);margin-bottom:10px}
+.muted{color:var(--muted);font-size:13px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.row>.fld{flex:1;min-width:120px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:42px;padding:0 15px;border-radius:12px;font-weight:700;font-size:14px;background:var(--s2);border:1px solid var(--line)}
+.btn.p{background:var(--acc);color:#16181d;border-color:var(--acc)}
+.btn.s{height:34px;padding:0 11px;font-size:13px;border-radius:10px}
+.btn.g{background:var(--wa);border-color:var(--wa);color:#fff}
+.btn.r{color:var(--red)}
+.gate{max-width:380px;margin:12vh auto 0;padding:0 18px;text-align:center}
+.gate h1{font-size:24px;margin:14px 0 6px}
+.gate p{color:var(--muted);margin-bottom:18px}
+.gate .fld{text-align:left}
+.gate .btn{width:100%}
+.mark{width:54px;height:54px;border-radius:15px;background:#1f2229;margin:0 auto;position:relative;overflow:hidden;border:1px solid #3a3f4a}
+.mark:before,.mark:after{content:"";position:absolute;background:#fff3d6;box-shadow:0 0 8px 2px rgba(255,236,190,.6);border-radius:2px}
+.mark:before{left:12px;right:12px;top:16px;height:3px}.mark:after{left:12px;top:16px;bottom:12px;width:3px}
+.bar{position:sticky;top:0;z-index:10;background:rgba(14,15,18,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-in{display:flex;align-items:center;gap:8px;height:56px}
+.bar-in b{margin-right:auto;font-size:17px}
+.sv{font-size:12.5px;color:var(--muted)}.sv.ok{color:var(--ok)}.sv.err{color:var(--red)}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:0 14px 10px;max-width:900px;margin:0 auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:none;height:36px;padding:0 13px;border-radius:99px;background:var(--s1);border:1px solid var(--line);font-size:14px;position:relative}
+.tabs button[aria-selected=true]{background:var(--text);color:#16181d;font-weight:700}
+.dot{position:absolute;top:-3px;right:-3px;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--red);color:#fff;font-size:11px;display:grid;place-items:center}
+h2.t{font-size:21px;margin:18px 0 12px}
+.card{background:var(--s1);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
+h3.c{font-size:16px;margin-bottom:10px}
+.note{background:rgba(58,208,127,.1);border:1px solid rgba(58,208,127,.35);color:#bff0d2;border-radius:12px;padding:10px 12px;font-size:13.5px;margin-bottom:12px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.chips button{height:32px;padding:0 12px;border-radius:99px;background:var(--s1);border:1px solid var(--line);font-size:13px}
+.chips button[aria-pressed=true]{background:var(--acc);color:#16181d;border-color:var(--acc);font-weight:700}
+.ord{background:var(--s1);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:10px}
+.ord.new{border-color:rgba(255,217,138,.6)}
+.oh{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.oh b{font-size:16px}
+.bdg{font-size:11.5px;font-weight:700;padding:3px 8px;border-radius:99px;background:var(--s2)}
+.bdg.calc{background:rgba(255,217,138,.15);color:var(--acc)}.bdg.zamer{background:rgba(58,208,127,.15);color:var(--ok)}
+.oh time{margin-left:auto;color:var(--muted);font-size:12.5px}
+.ord ul{list-style:none;margin:8px 0;font-size:14px;display:grid;gap:3px}
+.ord li span{color:var(--muted)}
+.st{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.st button{height:32px;padding:0 10px;border-radius:9px;background:var(--s2);font-size:12.5px}
+.st button[aria-pressed=true]{background:var(--text);color:#16181d;font-weight:700}
+.st .del{margin-left:auto;background:rgba(255,90,90,.12);color:#ff8f8f;border:1px solid rgba(255,90,90,.35)}
+.bell{background:rgba(255,217,138,.1);border:1px solid rgba(255,217,138,.45);border-radius:12px;padding:10px 12px;margin-bottom:12px;display:flex;gap:10px;align-items:center;font-size:13.5px}
+.bell span{flex:1}
+.rep{background:var(--s1);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:14px}
+.rep .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.rep input[type=date]{height:38px;padding:0 10px;border-radius:10px;background:var(--s2);border:1px solid var(--line);color:inherit;font:inherit}
+.rep .sum{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.rep .sum div{background:var(--s2);border-radius:10px;padding:8px 10px;font-size:12px;color:var(--muted)}
+.rep .sum b{display:block;font-size:17px;color:var(--text)}
+.it{display:grid;gap:8px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px;margin-bottom:8px}
+.it .row input{flex:1}
+.sw{display:flex;align-items:center;gap:10px;margin-bottom:10px;cursor:pointer;font-size:14.5px}
+.sw input{width:20px;height:20px;accent-color:var(--acc)}
+.ph{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(min-width:640px){.ph{grid-template-columns:repeat(3,1fr)}}
+.phc{background:var(--bg);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.phc.hero{border-color:var(--acc)}
+.phc img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
+.phc .b{padding:8px;display:grid;gap:6px}
+.phc .b input{font-size:13px;padding:7px 9px}
+.phc .row{gap:4px}
+.phc .row button{flex:1;height:30px;border-radius:8px;background:var(--s2);font-size:13px}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%) translateY(120px);background:var(--text);color:#16181d;font-weight:700;padding:11px 16px;border-radius:12px;transition:transform .25s;z-index:30;max-width:90vw;text-align:center}
+.toast.on{transform:translateX(-50%)}
+.empty{color:var(--muted);text-align:center;padding:24px 0}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.cal .wd{text-align:center;font-size:11.5px;color:var(--muted);padding:2px 0}
+.cal button{aspect-ratio:1;border-radius:10px;background:var(--bg);border:1px solid var(--line);font-size:14px;font-weight:700;display:grid;place-items:center;position:relative;line-height:1.1}
+.cal button small{display:block;font-size:9.5px;font-weight:500;color:var(--muted)}
+.cal button.busy{background:rgba(255,107,107,.16);border-color:rgba(255,107,107,.55);color:#ffb3b3}
+.cal button.busy small{color:#ffb3b3}
+.cal button.past{opacity:.35}
+.cal button.today{outline:2px solid var(--acc)}
+.cal button i{position:absolute;top:3px;right:4px;min-width:15px;height:15px;border-radius:8px;background:var(--acc);color:#16181d;font-size:10px;font-style:normal;display:grid;place-items:center;padding:0 3px}
+.calh{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.calh b{font-size:16px;text-transform:capitalize}
+.lg{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin-top:10px}
+.lg span{display:flex;align-items:center;gap:6px}.lg i{width:14px;height:14px;border-radius:4px;border:1px solid var(--line);display:inline-block}
+.wk{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.wk label{display:flex;align-items:center;gap:5px;background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:6px 9px;font-size:13px;cursor:pointer}
+.wk input{width:16px;height:16px;accent-color:var(--acc)}
+.phc img{aspect-ratio:4/3}
+.phc select{font-size:13px;padding:7px 9px}
+.poster{display:flex;gap:10px;align-items:center;margin-bottom:10px}
+.poster img{width:70px;height:94px;object-fit:cover;border-radius:8px;border:1px solid var(--line)}
+</style>
+</head>
+<body>
+
+<div id="gate" class="gate" hidden>
+  <img src="img/logo.webp" alt="Emirat" width="92" style="display:block;margin:0 auto">
+  <h1>Админка Emirat</h1>
+  <p>Введите пароль администратора.</p>
+  <label class="fld">Пароль <span class="muted">вводите английскими буквами</span><input id="gPass" type="password" autocomplete="current-password" autocapitalize="off" autocorrect="off" spellcheck="false"></label>
+  <button class="btn p" id="gateBtn" type="button">Войти</button>
+  <p style="margin-top:16px"><a href="index.html">← вернуться на сайт</a></p>
+</div>
+
+<div id="app" hidden>
+  <header class="bar">
+    <div class="wrap bar-in"><b>Админка Emirat</b><span class="sv" id="sv"></span><button class="btn s" id="bellBtn" title="Уведомления в Telegram">🔔</button><a class="btn s" href="index.html" target="_blank" rel="noopener">Сайт ↗</a><button class="btn s" id="exit">Выйти</button></div>
+    <nav class="tabs" id="tabs">
+      <button data-tab="orders" aria-selected="true">Заявки<span class="dot" id="dot" hidden></span></button>
+      <button data-tab="dates" aria-selected="false">Даты</button>
+      <button data-tab="corp" aria-selected="false">Корпоративы</button>
+      <button data-tab="photos" aria-selected="false">Фото</button>
+      <button data-tab="texts" aria-selected="false">Отзывы и акция</button>
+      <button data-tab="settings" aria-selected="false">Настройки</button>
+      <button data-tab="admin" aria-selected="false">Админка</button>
+    </nav>
+  </header>
+  <main class="wrap" id="view" style="padding-bottom:40px"></main>
+</div>
+<input type="file" id="files" accept="image/*" multiple hidden>
+<input type="file" id="pfile" accept="image/*" hidden>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="js/store.js?v=1"></script>
+<script>
+(function(){
+'use strict';
+var $=function(s){return document.querySelector(s);};
+var esc=function(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});};
+var money=function(n){return String(Math.round(n||0)).replace(/\B(?=(\d{3})+(?!\d))/g,' ')+' ₸';};
+function toast(t){var el=$('#toast');el.textContent=t;el.classList.add('on');clearTimeout(el._t);el._t=setTimeout(function(){el.classList.remove('on');},2600);}
+function getPath(o,p){return p.split('.').reduce(function(a,k){return a==null?a:a[k];},o);}
+function setPath(o,p,v){var a=p.split('.');for(var i=0;i<a.length-1;i++)o=o[a[i]];o[a[a.length-1]]=v;}
+var D=null, tab='orders', orders=[], oSt='all', timer=null, seen=JSON.parse(localStorage.getItem('emirat_seen')||'[]');
+var MON=['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+var MG=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+function today(){return new Date(Date.now()+5*36e5).toISOString().slice(0,10);}
+function dnice(v){if(!v)return '';var p=String(v).split('-');return (+p[2])+' '+MG[+p[1]-1];}
+function dayKey(d){var x=new Date(d);return x.getFullYear()+'-'+('0'+(x.getMonth()+1)).slice(-2)+'-'+('0'+x.getDate()).slice(-2);}
+
+/* вход */
+function gate(){ $('#app').hidden=true; $('#gate').hidden=false; $('#gPass').focus(); }
+function login(){
+  var p=$('#gPass').value.trim(); if(!p) return toast('Введите пароль');
+  $('#gateBtn').disabled=true;
+  Store.login(p).then(boot).catch(function(e){toast(e.status===401?'Неверный пароль. Проверьте английскую раскладку':'Нет связи: '+e.message);}).then(function(){$('#gateBtn').disabled=false;});
+}
+$('#gateBtn').onclick=login;
+$('#gPass').addEventListener('keydown',function(e){if(e.key==='Enter')login();});
+$('#exit').onclick=function(){Store.logout();location.reload();};
+function boot(){
+  $('#gate').hidden=true; $('#app').hidden=false;
+  Store.load(true).then(function(d){D=d;render();}).catch(function(e){toast('Не загрузилось: '+e.message);});
+}
+if(Store.authed()) boot(); else gate();
+
+/* сохранение */
+var saveT=null;
+function sv(s){var el=$('#sv');el.className='sv '+s;el.textContent=s==='ok'?'✓ сохранено':s==='err'?'⚠ не сохранено':'сохраняю…';}
+function touch(){ sv('busy'); clearTimeout(saveT); saveT=setTimeout(function(){ Store.save(D).then(function(){sv('ok');}).catch(function(e){sv('err');toast('Не сохранилось: '+e.message);}); },600); }
+
+/* вкладки */
+$('#tabs').addEventListener('click',function(e){var b=e.target.closest('[data-tab]');if(b)go(b.dataset.tab);});
+function go(t){tab=t;[].forEach.call($('#tabs').children,function(x){x.setAttribute('aria-selected',x.dataset.tab===t);});render();window.scrollTo(0,0);}
+function render(){
+  clearInterval(timer); timer=null;
+  ({orders:vOrders,dates:vDates,corp:vCorp,photos:vPhotos,texts:vTexts,settings:vSettings,admin:vAdmin})[tab]();
+}
+function F(label,path,o){o=o||{};var v=getPath(D,path);if(o.list)v=(v||[]).join(o.sep||', ');
+  return '<label class="fld">'+label+(o.area?'<textarea data-b="'+path+'"'+(o.list?' data-list="'+(o.sep||',')+'"':'')+' rows="'+(o.rows||4)+'" placeholder="'+esc(o.ph||'')+'">'+esc(v==null?'':v)+'</textarea>':'<input data-b="'+path+'"'+(o.list?' data-list=","':'')+(o.num?' data-num="1" inputmode="numeric"':'')+' value="'+esc(v==null?'':v)+'" placeholder="'+esc(o.ph||'')+'">')+(o.hint?'<span class="muted">'+o.hint+'</span>':'')+'</label>';}
+function SW(label,path){return '<label class="sw"><input type="checkbox" data-b="'+path+'"'+(getPath(D,path)?' checked':'')+'>'+label+'</label>';}
+
+/* ===== ЗАЯВКИ ===== */
+var STS=[['new','Новая'],['ok','Подтверждена'],['done','Прошла'],['cancel','Отмена']];
+var STF=[['new','Новые'],['ok','Подтверждены'],['done','Прошли'],['cancel','Отмена']];
+var SNAME={new:'Новая',ok:'Подтверждена',done:'Прошла',cancel:'Отмена'};
+function vOrders(){
+  $('#view').innerHTML='<h2 class="t">Заявки на бронь</h2><div class="note">Заявки с сайта приходят сюда со звуком. Нажмите «Подтверждена» — и дата сама станет «занято» в календаре на сайте.</div>'+
+    '<div id="bellNote"></div>'+
+    '<div class="rep"><b>📊 Отчёт за день</b><div class="row" style="margin-top:8px"><input type="date" id="rDate" value="'+today()+'"><button class="btn g s" type="button" id="rXls" style="height:38px">⬇ Скачать Excel</button></div><div class="sum" id="rSum"></div></div>'+
+    '<div class="chips" id="oSt"></div><div id="olist" class="empty">Загружаю…</div>';
+  loadOrders(); timer=setInterval(function(){loadOrders(true);},20000);
+  Store.tgInfo().then(function(r){var el=$('#bellNote');if(el&&r.bot&&!r.chats)el.innerHTML='<div class="bell">🔔<span>Уведомления о заявках в Telegram ещё не подключены.</span><button class="btn s" type="button" data-bell="1">Подключить</button></div>';}).catch(function(){});
+  $('#rDate').onchange=paintReport; $('#rXls').onclick=downloadXls;
+}
+function loadOrders(quiet){
+  return Store.listOrders(500).then(function(l){
+    l=l.filter(function(o){return o.status!=='deleted';});
+    var fresh=l.filter(function(o){return o.status==='new'&&seen.indexOf(o.id)<0;});
+    if(quiet&&fresh.length){toast('Новая заявка!');try{var c=new (window.AudioContext||window.webkitAudioContext)(),o=c.createOscillator();o.frequency.value=880;o.connect(c.destination);o.start();o.stop(c.currentTime+.25);}catch(e){}}
+    orders=l; seen=l.map(function(o){return o.id;}); localStorage.setItem('emirat_seen',JSON.stringify(seen));
+    syncBusy();
+    if($('#olist')){paintOrders();paintReport();}
+    if(tab==='dates'&&$('#cal'))paintCal();
+  }).catch(function(e){var x=$('#olist');if(x)x.textContent='Не загрузилось: '+e.message;});
+}
+/* подтверждённые заявки (в т.ч. принятые из Telegram) — их даты должны быть «заняты» на сайте */
+function syncBusy(){
+  var t=today(),add=[];
+  orders.forEach(function(o){if(o.status==='ok'&&o.date&&o.date>=t&&D.busy.indexOf(o.date)<0&&add.indexOf(o.date)<0)add.push(o.date);});
+  if(add.length){D.busy=D.busy.concat(add).sort();touch();}
+}
+function paintOrders(){
+  var n=orders.filter(function(o){return o.status==='new';}).length; $('#dot').hidden=!n; $('#dot').textContent=n;
+  $('#oSt').innerHTML=[['all','Все']].concat(STF).map(function(s){var c=s[0]==='all'?orders.length:orders.filter(function(o){return o.status===s[0];}).length;return '<button data-ost="'+s[0]+'" aria-pressed="'+(oSt===s[0])+'">'+s[1]+' '+c+'</button>';}).join('');
+  var l=orders.filter(function(o){return oSt==='all'||o.status===oSt;});
+  $('#olist').className=l.length?'':'empty';
+  $('#olist').innerHTML=l.length?l.map(orderHTML).join(''):'Заявок пока нет.';
+}
+function orderHTML(o){
+  var d=new Date(o.created_at), ph=String(o.phone||'').replace(/\D/g,''), busy=D.busy.indexOf(o.date)>=0;
+  return '<div class="ord'+(o.status==='new'?' new':'')+'"><div class="oh"><span class="bdg calc">📅 '+esc(dnice(o.date))+(o.time?' · '+esc(o.time):'')+'</span><b>'+esc(o.name||'Без имени')+'</b><time>№'+o.id+' · '+d.toLocaleDateString('ru-RU',{day:'numeric',month:'short'})+', '+d.toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'})+'</time></div>'+
+    '<ul>'+(o.type?'<li><span>Мероприятие:</span> <b>'+esc(o.type)+'</b></li>':'')+'<li><span>Гостей:</span> <b>'+esc(o.guests||'—')+'</b></li>'+
+    (o.menu?'<li><span>Меню:</span> '+esc(o.menu)+'</li>':'')+(o.total?'<li><span>Предварительно:</span> <b>'+money(o.total)+'</b></li>':'')+
+    (/акция/.test(o.when||'')?'<li>🎁 Подходит под акцию: фуршетный и детский стол в подарок</li>':'')+
+    '<li><span>Телефон:</span> '+esc(o.phone||'—')+'</li>'+(o.comment?'<li><span>Комментарий:</span> '+esc(o.comment)+'</li>':'')+
+    (o.date?'<li><span>В календаре:</span> '+(busy?'🔴 дата занята':'🟢 дата свободна')+'</li>':'')+'</ul>'+
+    '<div class="row">'+(ph?'<a class="btn s" href="tel:+'+ph+'">📞 Позвонить</a><a class="btn s g" href="https://wa.me/'+ph+'" target="_blank" rel="noopener">WhatsApp</a>':'')+'</div>'+
+    '<div class="st">'+STS.map(function(s){return '<button data-ord="'+o.id+'" data-s="'+s[0]+'" aria-pressed="'+(o.status===s[0])+'">'+s[1]+'</button>';}).join('')+'<button class="del" data-del="'+o.id+'">🗑 Удалить</button></div></div>';
+}
+function setBusy(date,on){var i=D.busy.indexOf(date);if(on&&i<0){D.busy.push(date);D.busy.sort();}else if(!on&&i>=0)D.busy.splice(i,1);else return false;touch();return true;}
+function afterStatus(o,s){
+  if(!o.date)return;
+  if(s==='ok'){if(setBusy(o.date,true))toast('Дата '+dnice(o.date)+' теперь «занято» на сайте');return;}
+  if((s==='cancel'||s==='deleted')&&D.busy.indexOf(o.date)>=0){
+    var other=orders.some(function(x){return x.id!==o.id&&x.date===o.date&&(x.status==='ok'||x.status==='done');});
+    if(!other&&confirm('Освободить дату '+dnice(o.date)+' в календаре на сайте?')){setBusy(o.date,false);toast('Дата '+dnice(o.date)+' снова свободна');}
+  }
+}
+
+/* ===== ОТЧЁТ ===== */
+function dayData(day,list){
+  var inc=list.filter(function(o){return dayKey(o.created_at)===day;});
+  var ev=list.filter(function(o){return o.date===day&&o.status!=='cancel';});
+  return {inc:inc,ev:ev,guests:ev.reduce(function(a,o){return a+(+o.guests||0);},0),sum:ev.reduce(function(a,o){return a+(+o.total||0);},0)};
+}
+function paintReport(){
+  var el=$('#rSum'); if(!el)return; var R=dayData($('#rDate').value,orders);
+  el.innerHTML='<div>Поступило заявок<b>'+R.inc.length+'</b></div><div>Мероприятий в этот день<b>'+R.ev.length+'</b></div><div>Гостей в этот день<b>'+R.guests+'</b></div>';
+}
+function loadXlsx(){return window.XLSX?Promise.resolve():new Promise(function(ok,no){var sc=document.createElement('script');sc.src='https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js';sc.onload=ok;sc.onerror=function(){no(new Error('нет интернета'));};document.head.appendChild(sc);});}
+function rowOf(o){return [o.id,o.date||'',o.time||'',o.type||'',+o.guests||'',o.menu||'',+o.total||'',o.name||'',o.phone||'',SNAME[o.status]||o.status,o.comment||'',new Date(o.created_at).toLocaleString('ru-RU')];}
+var HEAD=['№','Дата мероприятия','Начало','Мероприятие','Гостей','Меню','Предварительно, ₸','Имя','Телефон','Статус','Комментарий','Заявка создана'];
+var COLS=[{wch:6},{wch:14},{wch:8},{wch:24},{wch:8},{wch:30},{wch:15},{wch:16},{wch:18},{wch:13},{wch:30},{wch:18}];
+function downloadXls(){
+  var day=$('#rDate').value,b=$('#rXls'); b.disabled=true; b.textContent='Готовлю…';
+  Promise.all([loadXlsx(),Store.listOrders(1000)]).then(function(r){
+    var all=r[1].filter(function(o){return o.status!=='deleted';}),R=dayData(day,all),wb=XLSX.utils.book_new();
+    var s1=[['Отчёт за '+dnice(day)+' '+day.slice(0,4)+' — '+(D.settings.name||'Emirat')],[],['Поступило заявок за день',R.inc.length],['Мероприятий в этот день',R.ev.length],['Гостей в этот день',R.guests],['Предварительная сумма (корпоративы), ₸',R.sum],[],['Заявки, поступившие за день'],HEAD];
+    R.inc.slice().reverse().forEach(function(o){s1.push(rowOf(o));});
+    var ws1=XLSX.utils.aoa_to_sheet(s1); ws1['!cols']=COLS; XLSX.utils.book_append_sheet(wb,ws1,'Поступившие');
+    var s2=[HEAD]; R.ev.forEach(function(o){s2.push(rowOf(o));});
+    var ws2=XLSX.utils.aoa_to_sheet(s2); ws2['!cols']=COLS; XLSX.utils.book_append_sheet(wb,ws2,'Мероприятия на дату');
+    var t=today(),fut=all.filter(function(o){return o.date>=t&&(o.status==='ok'||o.status==='new');}).sort(function(a,c){return a.date<c.date?-1:1;});
+    var s3=[HEAD]; fut.forEach(function(o){s3.push(rowOf(o));});
+    var ws3=XLSX.utils.aoa_to_sheet(s3); ws3['!cols']=COLS; XLSX.utils.book_append_sheet(wb,ws3,'Все будущие брони');
+    XLSX.writeFile(wb,'Emirat-отчёт-'+day+'.xlsx'); toast('Файл скачан');
+  }).catch(function(e){toast('Не получилось: '+e.message);}).then(function(){b.disabled=false;b.textContent='⬇ Скачать Excel';});
+}
+
+/* ===== ДАТЫ ===== */
+var calM=today().slice(0,7);
+function vDates(){
+  $('#view').innerHTML='<h2 class="t">Занятые даты</h2><div class="note">Нажмите на день, чтобы отметить его «занято» или снова «свободно». Так он будет показан в календаре на сайте. Подтверждённые заявки закрывают дату сами.</div>'+
+    '<div class="card"><div class="calh"><button class="btn s" data-cm="-1">←</button><b id="calT"></b><button class="btn s" data-cm="1">→</button></div><div class="cal" id="cal"></div>'+
+    '<div class="lg"><span><i></i>свободно</span><span><i style="background:rgba(255,107,107,.16);border-color:rgba(255,107,107,.55)"></i>занято</span><span><i style="background:var(--acc)"></i>число заявок</span></div></div>'+
+    '<div class="card"><h3 class="c">Ближайшие занятые даты</h3><div id="busyList" class="muted"></div></div>';
+  paintCal(); if(!orders.length)loadOrders();
+}
+function paintCal(){
+  var y=+calM.slice(0,4),m=+calM.slice(5,7),t=today(),first=(new Date(Date.UTC(y,m-1,1)).getUTCDay()+6)%7,days=new Date(Date.UTC(y,m,0)).getUTCDate();
+  $('#calT').textContent=MON[m-1]+' '+y;
+  var cnt={};orders.forEach(function(o){if(o.date&&o.status!=='cancel')cnt[o.date]=(cnt[o.date]||0)+1;});
+  var h=['пн','вт','ср','чт','пт','сб','вс'].map(function(w){return '<div class="wd">'+w+'</div>';}).join('')+'<span></span>'.repeat(first);
+  for(var d=1;d<=days;d++){var s=calM+'-'+('0'+d).slice(-2),b=D.busy.indexOf(s)>=0,p=s<t;
+    h+='<button type="button" class="'+(b?'busy':'')+(p?' past':'')+(s===t?' today':'')+'" data-day="'+s+'"'+(p?' disabled':'')+'>'+d+'<small>'+(b?'занято':'')+'</small>'+(cnt[s]?'<i>'+cnt[s]+'</i>':'')+'</button>';}
+  $('#cal').innerHTML=h;
+  var fut=D.busy.filter(function(x){return x>=t;});
+  $('#busyList').innerHTML=fut.length?fut.slice(0,40).map(function(x){return '<span class="bdg" style="display:inline-block;margin:0 6px 6px 0">'+dnice(x)+' '+x.slice(0,4)+'</span>';}).join(''):'Пока ни одна дата не закрыта.';
+}
+
+/* ===== КОРПОРАТИВЫ ===== */
+function lines(path,val){return '<textarea data-lines="'+path+'" rows="5">'+esc((val||[]).join('\n'))+'</textarea>';}
+function vCorp(){
+  var c=D.corp;
+  $('#view').innerHTML='<h2 class="t">Корпоративы</h2>'+
+    '<div class="card">'+SW('Показывать блок корпоративов на сайте','corp.on')+F('Заголовок','corp.title',{ph:'Новогодние корпоративы'})+F('Строка про старт','corp.start',{ph:'Старт новогодних корпоративов с 19 декабря!'})+
+      '<label class="fld">Шоу-программа — каждый пункт с новой строки'+lines('corp.show',c.show)+'</label><p class="muted">Выключите блок после праздников — он исчезнет с сайта, а меню сохранится до следующего раза.</p></div>'+
+    c.variants.map(function(v,i){
+      return '<div class="card"><div class="row" style="margin-bottom:8px"><h3 class="c" style="margin:0">Меню '+(i+1)+'</h3><button class="btn s r" data-vdel="'+i+'" style="margin-left:auto">Удалить меню</button></div>'+
+        F('Цена за гостя, ₸','corp.variants.'+i+'.price',{num:1})+
+        '<div class="poster">'+(v.poster?'<img src="'+esc(Store.img(v.poster))+'" alt="">':'')+'<div class="row"><button class="btn s" data-pup="'+i+'">'+(v.poster?'Заменить афишу':'📷 Загрузить афишу')+'</button>'+(v.poster?'<button class="btn s r" data-pdel="'+i+'">Убрать</button>':'')+'</div></div>'+
+        '<label class="fld">Закуски — каждая с новой строки'+lines('corp.variants.'+i+'.snacks',v.snacks)+'</label>'+
+        '<label class="fld">Салаты — каждый с новой строки'+lines('corp.variants.'+i+'.salads',v.salads)+'</label>'+
+        '<label class="fld">Горячие — каждое с новой строки: название | описание<textarea data-hot="'+i+'" rows="4">'+esc(v.hot.map(function(h){return h.n+(h.sub?' | '+h.sub:'');}).join('\n'))+'</textarea></label></div>';
+    }).join('')+'<button class="btn p" id="vadd">+ Добавить меню</button>';
+}
+
+/* ===== ФОТО ===== */
+var CATN=[['hall','Зал'],['trad','Традиции'],['show','Шоу от шефа'],['party','Праздник']];
+function vPhotos(){
+  var w=D.photos;
+  $('#view').innerHTML='<h2 class="t">Фото зала</h2>'+
+    '<div class="card"><div class="row"><button class="btn p" id="upl">📷 Добавить фото</button><span class="muted" id="uplst">Можно выбрать сразу несколько. Фото сжимаются автоматически.</span></div></div>'+
+    (w.length?'<div class="ph">'+w.map(function(x,i){
+      return '<div class="phc"><img src="'+esc(Store.img(x.img))+'" alt="" loading="lazy"><div class="b">'+
+        '<input data-b="photos.'+i+'.t" value="'+esc(x.t||'')+'" placeholder="Название">'+
+        '<input data-b="photos.'+i+'.s" value="'+esc(x.s||'')+'" placeholder="Описание">'+
+        '<select data-b="photos.'+i+'.cat">'+CATN.map(function(c){return '<option value="'+c[0]+'"'+(x.cat===c[0]?' selected':'')+'>'+c[1]+'</option>';}).join('')+'</select>'+
+        '<div class="row"><button data-mv="'+i+'|-1" aria-label="Левее">←</button><button data-mv="'+i+'|1" aria-label="Правее">→</button><button data-wdel="'+i+'" aria-label="Удалить" style="color:var(--red)">🗑</button></div></div></div>';
+    }).join('')+'</div><p class="muted" style="margin-top:10px">Стрелки меняют порядок фото в галерее. Раздел — к какой вкладке галереи относится фото.</p>':'<p class="empty">Фото пока нет.</p>');
+}
+function compress(file){
+  return new Promise(function(res,rej){
+    var img=new Image(), u=URL.createObjectURL(file);
+    img.onload=function(){var s=Math.min(1,1280/Math.max(img.width,img.height)),c=document.createElement('canvas');c.width=Math.round(img.width*s);c.height=Math.round(img.height*s);c.getContext('2d').drawImage(img,0,0,c.width,c.height);URL.revokeObjectURL(u);c.toBlob(function(b){b?res(b):rej(new Error('не удалось сжать'));},'image/jpeg',0.82);};
+    img.onerror=function(){rej(new Error('не картинка'));}; img.src=u;
+  });
+}
+$('#files').onchange=function(){
+  var fs=[].slice.call(this.files||[]); if(!fs.length)return; var done=0;
+  (function next(){
+    if(!fs.length){toast('Добавлено фото: '+done);touch();return vPhotos();}
+    var f=fs.shift(); var st=$('#uplst'); if(st)st.textContent='Загружаю… осталось '+(fs.length+1);
+    compress(f).then(Store.upload).then(function(id){D.photos.unshift({img:id,t:'Новое фото',s:'',cat:'hall',tag:''});done++;}).catch(function(e){toast('Фото не загрузилось: '+e.message);}).then(next);
+  })();
+};
+var pIdx=-1;
+$('#pfile').onchange=function(){
+  var f=this.files&&this.files[0]; if(!f||pIdx<0)return; toast('Загружаю афишу…');
+  compress(f).then(Store.upload).then(function(id){var v=D.corp.variants[pIdx],old=v.poster;v.poster=id;touch();if(/^\d+$/.test(String(old)))Store.removeImg(old).catch(function(){});toast('Афиша загружена');vCorp();}).catch(function(e){toast('Не загрузилось: '+e.message);});
+};
+
+/* ===== ОТЗЫВЫ И АКЦИЯ ===== */
+function blocks(arr,keys){return arr.map(function(x){return keys.map(function(k){return x[k]||'';}).join(' | ');}).join('\n');}
+var WDN=[[1,'пн'],[2,'вт'],[3,'ср'],[4,'чт'],[5,'пт'],[6,'сб'],[0,'вс']];
+function vTexts(){
+  var g=D.gift;
+  $('#view').innerHTML='<h2 class="t">Отзывы и акция</h2>'+
+    '<div class="card"><h3 class="c">🎁 Акция</h3>'+SW('Показывать акцию на сайте','gift.on')+F('Текст акции','gift.title')+F('От скольких гостей','gift.minGuests',{num:1})+
+      '<div class="fld">В какие дни действует</div><div class="wk">'+WDN.map(function(w){return '<label><input type="checkbox" data-wd="'+w[0]+'"'+(g.weekend.indexOf(w[0])>=0?' checked':'')+'>'+w[1]+'</label>';}).join('')+'</div>'+
+      '<label class="fld">На какие мероприятия НЕ действует — каждое с новой строки'+lines('gift.noTypes',g.noTypes)+'</label></div>'+
+    '<div class="card"><h3 class="c">Мероприятия в форме заявки</h3><label class="fld">Каждое с новой строки'+lines('types',D.types)+'</label><p class="muted">«Корпоратив» — особый пункт: при нём гость выбирает меню корпоратива.</p></div>'+
+    '<div class="card"><h3 class="c">Отзывы</h3><label class="fld">Каждый с новой строки: имя | дата | текст<textarea data-blocks="reviews" data-keys="name,date,text" rows="10">'+esc(blocks(D.reviews,['name','date','text']))+'</textarea></label></div>';
+}
+
+/* ===== НАСТРОЙКИ ===== */
+function vSettings(){
+  $('#view').innerHTML='<h2 class="t">Настройки</h2>'+
+    '<div class="card"><h3 class="c">Администратор</h3><p class="muted" style="margin-bottom:10px">Его имя и номер видны на сайте, ему гости пишут в WhatsApp.</p>'+F('Имя','settings.admin.name')+F('Номер WhatsApp (только цифры)','settings.admin.wa',{ph:'77071567597'})+F('Телефон, как показывать','settings.admin.phone')+'</div>'+
+    '<div class="card"><h3 class="c">Ресторан</h3>'+F('Название','settings.name')+F('Телефоны ресторана (через запятую)','settings.phones',{list:1})+'<div class="row">'+F('Город','settings.city')+F('Адрес','settings.address')+'</div>'+
+      F('Время работы','settings.hours')+F('Коротко (в шапке)','settings.hoursShort')+
+      '<div class="row">'+F('Начало мероприятий с','settings.timeFrom',{ph:'10:00'})+F('до','settings.timeTo',{ph:'22:00'})+'</div>'+
+      '<div class="row">'+F('Вместимость зала','settings.capacity',{num:1})+F('Максимум гостей','settings.maxGuests',{num:1})+'</div></div>'+
+    '<div class="card"><h3 class="c">Рейтинг 2ГИС</h3><div class="row">'+F('Рейтинг','settings.rating')+F('Оценок (подпись)','settings.ratingCount')+'</div>'+F('Строка под рейтингом в отзывах','settings.reviewsNote')+F('Ссылка на 2ГИС','settings.gis')+'</div>'+
+    '<div class="card" id="tgCard"><h3 class="c">🔔 Уведомления в Telegram</h3><p class="muted" id="tgSt">Проверяю…</p></div>';
+  paintTg();
+}
+function paintTg(){
+  Store.tgInfo().then(function(r){
+    var el=$('#tgCard'); if(!el)return;
+    if(!r.bot){$('#tgSt').textContent='Бот уведомлений ещё не настроен. Напишите разработчику сайта.';return;}
+    el.innerHTML='<h3 class="c">🔔 Уведомления в Telegram</h3>'+
+      '<p class="muted">Когда гость оставляет заявку на сайте, вам в Telegram сразу приходит сообщение: дата, мероприятие, гости и телефон. Прямо там можно нажать «Принят» — дата закроется в календаре.</p>'+
+      '<p style="margin:10px 0"><b>'+(r.chats?'✅ Подключено: '+r.chats+' '+(r.chats===1?'чат':'чата'):'Пока не подключено')+'</b></p>'+
+      '<div class="row"><button class="btn g" type="button" id="tgOn">'+(r.chats?'Подключить ещё телефон':'Подключить Telegram')+'</button>'+(r.chats?'<button class="btn s" type="button" id="tgOff">Отключить все</button>':'')+'</div>'+
+      '<p class="muted" style="margin-top:8px">Нажмите кнопку на телефоне, где установлен Telegram, — откроется бот @'+esc(r.bot)+'. Нажмите «Старт» (Start), и всё. Ссылка действует 15 минут.</p>';
+    $('#tgOn').onclick=function(){var w=window.open('about:blank','_blank');Store.tgLink().then(function(x){if(w)w.location.href=x.url;else location.href=x.url;toast('После «Старт» в боте вернитесь сюда');setTimeout(paintTg,15000);}).catch(function(e){if(w)w.close();toast('Ошибка: '+e.message);});};
+    if($('#tgOff'))$('#tgOff').onclick=function(){if(!confirm('Отключить уведомления во всех чатах?'))return;Store.tgOff().then(paintTg);};
+  }).catch(function(e){var x=$('#tgSt');if(x)x.textContent='Не загрузилось: '+e.message;});
+}
+
+/* ===== АДМИНКА ===== */
+function vAdmin(){
+  $('#view').innerHTML='<h2 class="t">Админка</h2><div class="note">✅ Сайт подключён к серверу: всё, что меняете здесь, сразу видно на сайте, заявки приходят сюда с любого устройства.</div>'+
+    '<div class="card"><h3 class="c">🔑 Пароль</h3><p class="muted" style="margin-bottom:10px">Общий для всех устройств. Английские буквы и цифры, минимум 6 символов.</p>'+
+      '<label class="fld">Новый пароль<input id="p1" type="password" autocomplete="new-password" autocapitalize="off" spellcheck="false"></label>'+
+      '<label class="fld">Ещё раз<input id="p2" type="password" autocomplete="new-password" autocapitalize="off" spellcheck="false"></label><button class="btn" id="savePass">Сменить пароль</button></div>'+
+    '<div class="card"><h3 class="c">📄 Данные из файла</h3><p class="muted" style="margin-bottom:10px">Вернёт тексты, меню и фото к версии из файла data/site.json. Занятые даты тоже сбросятся.</p><button class="btn r" id="reset">Взять из файла</button></div>'+
+    '<div class="card"><h3 class="c">🚪 Выход</h3><p class="muted" style="margin-bottom:10px">Вход держится 12 часов.</p><button class="btn" id="exit2">Выйти</button></div>';
+}
+
+/* ===== события ===== */
+document.addEventListener('input',function(e){
+  var el=e.target;
+  if(el.dataset.b){var v;if(el.type==='checkbox')v=el.checked;else if(el.dataset.num)v=+String(el.value).replace(/\s/g,'')||0;else if(el.dataset.list)v=el.value.split(/,/).map(function(x){return x.trim();}).filter(Boolean);else v=el.value;setPath(D,el.dataset.b,v);touch();}
+  else if(el.dataset.lines){setPath(D,el.dataset.lines,el.value.split('\n').map(function(x){return x.trim();}).filter(Boolean));touch();}
+  else if(el.dataset.hot){D.corp.variants[+el.dataset.hot].hot=el.value.split('\n').filter(function(x){return x.trim();}).map(function(l){var p=l.split('|');return {n:p[0].trim(),sub:p.slice(1).join('|').trim()};});touch();}
+  else if(el.dataset.blocks){var ks=el.dataset.keys.split(',');D[el.dataset.blocks]=el.value.split('\n').filter(function(x){return x.trim();}).map(function(line){var p=line.split('|').map(function(x){return x.trim();}),o={};ks.forEach(function(k,i){o[k]=i===ks.length-1?p.slice(i).join(' | '):(p[i]||'');});return o;});touch();}
+});
+document.addEventListener('change',function(e){var el=e.target;
+  if(el.dataset.wd!==undefined){var n=+el.dataset.wd,w=D.gift.weekend,i=w.indexOf(n);if(el.checked&&i<0)w.push(n);if(!el.checked&&i>=0)w.splice(i,1);touch();return;}
+  if(el.type==='checkbox'&&el.dataset.b){setPath(D,el.dataset.b,el.checked);touch();}if(el.tagName==='SELECT'&&el.dataset.b){setPath(D,el.dataset.b,el.value);touch();}});
+document.addEventListener('click',function(e){
+  var t=e.target.closest('button'); if(!t)return;
+  if(t.dataset.ost){oSt=t.dataset.ost;return paintOrders();}
+  if(t.dataset.del){var did=t.dataset.del;if(!confirm('Удалить эту заявку? Её не будет в списке и в отчёте.'))return;var od=orders.filter(function(o){return String(o.id)===did;})[0];Store.setStatus(did,'deleted').then(function(){orders=orders.filter(function(o){return String(o.id)!==did;});if(od)afterStatus(od,'deleted');paintOrders();paintReport();toast('Удалено');}).catch(function(err){toast('Не вышло: '+err.message);});return;}
+  if(t.dataset.bell||t.id==='bellBtn'){go('settings');setTimeout(function(){var c=$('#tgCard');if(c){c.scrollIntoView({behavior:'smooth',block:'center'});c.style.outline='2px solid #d6a74e';setTimeout(function(){c.style.outline='';},2500);}},300);return;}
+  if(t.dataset.ord){var id=t.dataset.ord,s=t.dataset.s;Store.setStatus(id,s).then(function(){var ob=null;orders.forEach(function(o){if(String(o.id)===id){o.status=s;ob=o;}});if(ob)afterStatus(ob,s);paintOrders();}).catch(function(err){toast('Не вышло: '+err.message);});return;}
+  if(t.dataset.cm){var y=+calM.slice(0,4),m=+calM.slice(5,7)-1+(+t.dataset.cm);var dt=new Date(Date.UTC(y,m,1));calM=dt.toISOString().slice(0,7);return paintCal();}
+  if(t.dataset.day){var ds=t.dataset.day,on=D.busy.indexOf(ds)<0;setBusy(ds,on);toast(dnice(ds)+(on?' — занято':' — свободно'));return paintCal();}
+  if(t.dataset.vdel){if(!confirm('Удалить это меню?'))return;D.corp.variants.splice(+t.dataset.vdel,1);touch();return vCorp();}
+  if(t.id==='vadd'){D.corp.variants.push({price:0,poster:'',snacks:[],salads:[],hot:[]});touch();return vCorp();}
+  if(t.dataset.pup){pIdx=+t.dataset.pup;$('#pfile').value='';$('#pfile').click();return;}
+  if(t.dataset.pdel){var vv=D.corp.variants[+t.dataset.pdel],op=vv.poster;vv.poster='';touch();if(/^\d+$/.test(String(op)))Store.removeImg(op).catch(function(){});return vCorp();}
+  if(t.id==='upl'){$('#files').value='';$('#files').click();return;}
+  if(t.dataset.mv){var a=t.dataset.mv.split('|'),i=+a[0],j=i+(+a[1]);if(j<0||j>=D.photos.length)return;var x=D.photos[i];D.photos[i]=D.photos[j];D.photos[j]=x;touch();return vPhotos();}
+  if(t.dataset.wdel){if(!confirm('Удалить фото с сайта?'))return;var w=D.photos.splice(+t.dataset.wdel,1)[0];touch();if(/^\d+$/.test(String(w.img)))Store.removeImg(w.img).catch(function(){});return vPhotos();}
+  if(t.id==='savePass'){var p1=$('#p1').value.trim(),p2=$('#p2').value.trim();if(p1.length<6)return toast('Минимум 6 символов');if(p1!==p2)return toast('Пароли не совпадают');if(/[а-яё]/i.test(p1))return toast('Только английские буквы и цифры');
+    return Store.changePassword(p1).then(function(){toast('Пароль изменён, войдите заново');setTimeout(function(){Store.logout();location.reload();},1500);}).catch(function(err){toast('Не вышло: '+err.message);});}
+  if(t.id==='reset'){if(!confirm('Заменить тексты, меню, фото и занятые даты версией из файла?'))return;return Store.reset().then(function(d){D=d;toast('Готово');render();}).catch(function(err){toast('Не вышло: '+err.message);});}
+  if(t.id==='exit2'){Store.logout();location.reload();}
+});
+})();
+</script>
+</body>
+</html>
