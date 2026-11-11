@@ -525,7 +525,7 @@ a.ci2:hover{border-color:var(--gold);transform:translateX(4px)}
     <div class="hact">
       <a class="hphone" id="hPhone" href="#"><span id="hPhoneTxt"></span><small>администратор</small></a>
       <a href="#book" class="btn btn-gold btn-sm">Забронировать</a>
-      <button class="burger" id="burger" type="button" aria-label="Открыть меню"><i></i></button>
+      <button type="button" data-sm-open aria-label="Настройки"></button><button class="burger" id="burger" type="button" aria-label="Открыть меню"><i></i></button>
     </div>
   </div>
 </header>
@@ -1074,5 +1074,6 @@ function init() {
 }
 function toggleNav(on) { const m = $('#mnav'); m.classList.toggle('open', on); m.setAttribute('aria-hidden', on ? 'false' : 'true'); document.body.style.overflow = on ? 'hidden' : ''; }
 </script>
+<script src="sm.js" defer data-accent="#b8893b" data-admin="admin.html"></script>
 </body>
 </html>
