@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://emirat-restaunrant.github.io/emirat/</loc>
+    <loc>https://emirat-restaunrant.github.io/Emirat/</loc>
     <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <image:image><image:loc>https://emirat-restaunrant.github.io/emirat/img/hero.webp</image:loc></image:image>
-    <image:image><image:loc>https://emirat-restaunrant.github.io/emirat/img/table.webp</image:loc></image:image>
-    <image:image><image:loc>https://emirat-restaunrant.github.io/emirat/img/decor.webp</image:loc></image:image>
-    <image:image><image:loc>https://emirat-restaunrant.github.io/emirat/img/betashar.webp</image:loc></image:image>
+    <image:image><image:loc>https://emirat-restaunrant.github.io/Emirat/img/hero.webp</image:loc></image:image>
+    <image:image><image:loc>https://emirat-restaunrant.github.io/Emirat/img/table.webp</image:loc></image:image>
+    <image:image><image:loc>https://emirat-restaunrant.github.io/Emirat/img/decor.webp</image:loc></image:image>
+    <image:image><image:loc>https://emirat-restaunrant.github.io/Emirat/img/betashar.webp</image:loc></image:image>
   </url>
 </urlset>

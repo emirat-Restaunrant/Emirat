@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin.html
 
-Sitemap: https://emirat-restaunrant.github.io/emirat/sitemap.xml
+Sitemap: https://emirat-restaunrant.github.io/Emirat/sitemap.xml
