@@ -511,6 +511,116 @@ a.ci2:hover{border-color:var(--gold);transform:translateX(4px)}
 @media (max-width:720px){.seal{width:74px;height:74px;top:-32px}.seal img{width:56px}.hph-l{left:14px;bottom:14px;width:40px;height:40px;padding:0;justify-content:center}.hph-l span{display:none}.hph-l svg{width:19px;height:19px}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv-in{opacity:1;transform:none}}
 .seo{padding:8px 0 80px}
+
+/* объявление вверху */
+.nbar{position:fixed;top:0;left:0;right:0;z-index:55;min-height:40px;padding:9px 48px;background:var(--dark);color:var(--dcream);font-size:14px;font-weight:600;line-height:1.35;display:flex;align-items:center;justify-content:center;text-align:center}
+.nbar[hidden]{display:none}
+.nbar a{color:var(--gold2);text-decoration:underline;text-underline-offset:3px}
+.nbar button{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;color:var(--dmuted);font-size:15px}
+html.has-nb{scroll-padding-top:calc(var(--hdr) + var(--nbh,40px) + 10px)}
+.has-nb .hdr{top:var(--nbh,40px)}
+.has-nb .hero{padding-top:calc(var(--hdr) + var(--nbh,40px) + 30px)}
+
+/* меню: банкетные меню, блюда, услуги */
+.mn{background:var(--paper);overflow:hidden}
+.mn::before{content:"";position:absolute;inset:0;background:var(--orn);pointer-events:none}
+.mh{font:600 clamp(28px,3.4vw,40px)/1.1 var(--serif);margin:0 0 20px}
+.mh em{font-style:italic;color:var(--gold);font-weight:500}
+.mblk+.mblk{margin-top:60px}
+.mblk[hidden]{display:none}
+.mcalc{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:0 0 20px;padding:14px 18px;border-radius:16px;background:var(--ivory);border:1px solid var(--line)}
+.mcalc label{font-weight:700;font-size:14px}
+.mcalc input[type=range]{flex:1;min-width:140px;accent-color:var(--gold)}
+.mcalc output{font:700 26px/1 var(--serif);min-width:52px;text-align:right}
+.pks{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:18px}
+.pk{display:flex;flex-direction:column;border-radius:22px;border:1px solid var(--line2);background:var(--ivory);overflow:hidden;box-shadow:0 18px 40px -30px rgba(80,50,10,.5)}
+.pk-h{padding:22px 24px 16px;border-bottom:1px solid var(--line)}
+.pk-h .l{display:block;font:800 12px/1.2 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--gold3);margin-bottom:10px}
+.pk-h b{font:700 clamp(32px,3.6vw,44px)/1 var(--serif);white-space:nowrap}
+.pk-h b small{font:600 14px var(--sans);color:var(--muted);margin-left:6px}
+.pk-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.pk-tags span{padding:5px 10px;border-radius:99px;background:var(--goldl);color:var(--gold3);font-size:12.5px;font-weight:700}
+.pk ul{list-style:none;margin:0;padding:18px 24px;display:grid;gap:8px;flex:1;align-content:start}
+.pk li{display:flex;gap:10px;font-size:15px;line-height:1.45}
+.pk li::before{content:"◆";color:var(--gold);font-size:9px;margin-top:6px;flex:none}
+.pk li b{color:var(--gold3);font-weight:700}
+.pk-f{padding:16px 24px 22px;border-top:1px solid var(--line);display:grid;gap:12px}
+.pk-s{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:13.5px;color:var(--muted)}
+.pk-s b{font:700 26px/1 var(--serif);color:var(--gold3);white-space:nowrap}
+.mcats{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.mcats button{padding:10px 16px;border-radius:99px;border:1.5px solid var(--line);background:var(--ivory);font-weight:700;font-size:14px;color:var(--ink2);transition:all .2s;white-space:nowrap}
+.mcats button small{font-size:12px;opacity:.6;margin-left:4px}
+.mcats button:hover{border-color:var(--gold)}
+.mcats button.on{background:linear-gradient(180deg,var(--gold2),var(--gold));border-color:var(--gold);color:#fff}
+.dg{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.dc{display:flex;flex-direction:column;border-radius:18px;border:1px solid var(--line);background:var(--ivory);overflow:hidden;animation:gin .45s var(--ease) both;min-width:0}
+.dc .ph{display:block;width:100%;aspect-ratio:4/3;padding:0;background:var(--sand);overflow:hidden;cursor:zoom-in}
+.dc .ph img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.dc .ph:hover img{transform:scale(1.05)}
+.dc .ph.no{display:grid;place-items:center;cursor:default;background:var(--orn),linear-gradient(160deg,var(--sand),var(--goldl))}
+.dc .ph.no span{font:600 58px/1 var(--serif);color:var(--gold);opacity:.6}
+.dc .bd{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1;min-width:0}
+.dc h4{margin:0;font:600 21px/1.15 var(--serif)}
+.dc p{font-size:13.5px;color:var(--muted);line-height:1.45}
+.dc .pr{margin-top:auto;padding-top:8px;display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.dc .pr b{font:700 22px/1 var(--serif);color:var(--gold3);white-space:nowrap}
+.dc .pr span{font-size:12.5px;color:var(--dim);text-align:right}
+.bdgs{display:flex;gap:6px;flex-wrap:wrap}
+.bdgs i{font-style:normal;font-size:11px;font-weight:800;letter-spacing:.03em;padding:4px 8px;border-radius:99px;background:var(--goldl);color:var(--gold3)}
+.bdgs i.h{background:var(--ink);color:var(--gold2)}
+.svl{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px}
+.svi{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:16px;background:var(--ivory);border:1px solid var(--line)}
+.svi .n{flex:1;min-width:0}
+.svi .n b{display:block;font-size:15.5px}
+.svi .n small{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+.svi .p{font:700 19px/1.1 var(--serif);color:var(--gold3);text-align:right;white-space:nowrap}
+.svi .p small{display:block;font:600 11.5px var(--sans);color:var(--dim)}
+.mn-cta{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:36px}
+/* доп. блюда и услуги в заявке */
+.xtr{margin-top:16px;border:1.5px solid var(--line);border-radius:16px;background:var(--paper)}
+.xtr summary{list-style:none;cursor:pointer;padding:14px 16px;font-weight:700;display:flex;align-items:center;gap:10px}
+.xtr summary::-webkit-details-marker{display:none}
+.xtr summary::after{content:"+";margin-left:auto;flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--goldl);color:var(--gold3);font-size:18px}
+.xtr[open] summary::after{content:"−"}
+.xtr summary small{font-weight:700;color:var(--gold3);font-size:13px}
+.xl{padding:0 16px 8px}
+.xr{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line)}
+.xr .n{flex:1;min-width:0;font-size:14.5px;font-weight:600;line-height:1.3}
+.xr .n small{display:block;font-weight:500;color:var(--muted);font-size:12.5px;margin-top:2px}
+.xr .n small b{color:var(--gold3);font-weight:700}
+.xs{display:inline-flex;align-items:center;border:1.5px solid var(--line2);border-radius:12px;overflow:hidden;flex:none;background:var(--ivory)}
+.xs button{width:34px;height:34px;font-size:18px;font-weight:700;color:var(--gold3)}
+.xs b{min-width:26px;text-align:center}
+.xadd{height:36px;padding:0 12px;border-radius:12px;border:1.5px solid var(--line2);font-size:13px;font-weight:700;color:var(--gold3);background:var(--ivory);flex:none}
+.xadd.on{background:var(--gold);border-color:var(--gold);color:#fff}
+/* вопросы и ответы */
+.faq{max-width:860px;margin:0 auto;display:grid;gap:10px}
+.faq details{border-radius:18px;border:1px solid var(--line);background:var(--paper);overflow:hidden}
+.faq summary{list-style:none;cursor:pointer;padding:18px 22px;font:600 21px/1.3 var(--serif);display:flex;gap:14px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";margin-left:auto;flex:none;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--goldl);color:var(--gold3);font:700 18px var(--sans)}
+.faq details[open] summary::after{content:"−"}
+.faq p{padding:0 22px 20px;color:var(--muted);font-size:15.5px;white-space:pre-line}
+@media (max-width:720px){
+  .has-nb .hero{padding-top:calc(var(--hdr) + var(--nbh,40px) + 22px)}
+  .nbar{font-size:13px;padding:8px 44px 8px 14px}
+  .mblk+.mblk{margin-top:44px}
+  .mcats{flex-wrap:nowrap;overflow-x:auto;margin:0 -16px 18px;padding:0 16px 4px;scrollbar-width:none}
+  .mcats::-webkit-scrollbar{display:none}
+  .dg{grid-template-columns:1fr;gap:10px}
+  .dc{flex-direction:row;border-radius:14px}
+  .dc .ph{width:104px;flex:none;aspect-ratio:auto;min-height:104px}
+  .dc .ph.no span{font-size:40px}
+  .dc .bd{padding:11px 13px;gap:4px}
+  .dc h4{font-size:18px}
+  .dc p{font-size:12.5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .dc .pr b{font-size:19px}
+  .pk{border-radius:18px}
+  .pk-h,.pk ul,.pk-f{padding-left:18px;padding-right:18px}
+  .svi{padding:14px}
+  .faq summary{font-size:18px;padding:16px 18px}
+  .faq p{padding:0 18px 18px;font-size:14.5px}
+}
 .seo h2{font-size:clamp(30px,4vw,44px)}
 .seo h2{margin-bottom:6px}
 .seo p{max-width:760px;margin-top:12px;color:var(--muted,#6b6257);line-height:1.6}
@@ -530,11 +640,12 @@ a.ci2:hover{border-color:var(--gold);transform:translateX(4px)}
   <symbol id="i-gift" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-8M12 8v13M12 8S10.5 3.5 8 3.5a2.25 2.25 0 0 0 0 4.5h4M12 8s1.5-4.5 4-4.5a2.25 2.25 0 0 1 0 4.5h-4"/></g></symbol>
 </defs></svg>
 
+<div class="nbar" id="nbar" role="note" hidden><span id="nbT"></span><button type="button" id="nbX" aria-label="Закрыть объявление">✕</button></div>
 <header class="hdr" id="hdr">
   <div class="wrap">
     <a href="#top" class="logo" aria-label="Emirat — на главную"><img id="logoImg" src="img/logo.webp" alt="Эмират (Emirat) — ресторан в Петропавловске" width="69" height="60"></a>
     <nav class="nav" aria-label="Разделы">
-      <a href="#corp">Корпоративы</a><a href="#gallery">Фото зала</a><a href="#book">Даты и бронь</a><a href="#reviews">Отзывы</a><a href="#contacts">Контакты</a>
+      <a href="#corp">Корпоративы</a><a href="#menu" hidden>Меню</a><a href="#gallery">Фото зала</a><a href="#book">Даты и бронь</a><a href="#reviews">Отзывы</a><a href="#contacts">Контакты</a>
     </nav>
     <div class="hact">
       <a class="hphone" id="hPhone" href="#"><span id="hPhoneTxt"></span><small>администратор</small></a>
@@ -545,7 +656,7 @@ a.ci2:hover{border-color:var(--gold);transform:translateX(4px)}
 </header>
 <div class="mnav" id="mnav" aria-hidden="true">
   <button class="x" type="button" aria-label="Закрыть">✕</button>
-  <a href="#corp">Корпоративы</a><a href="#gallery">Фото зала</a><a href="#book">Даты и бронь</a><a href="#reviews">Отзывы</a><a href="#contacts">Контакты</a>
+  <a href="#corp">Корпоративы</a><a href="#menu" hidden>Меню</a><a href="#gallery">Фото зала</a><a href="#book">Даты и бронь</a><a href="#reviews">Отзывы</a><a href="#contacts">Контакты</a>
   <a class="btn btn-gold" href="#book"><svg><use href="#i-cal"/></svg>Забронировать дату</a>
 </div>
 
@@ -602,6 +713,32 @@ a.ci2:hover{border-color:var(--gold);transform:translateX(4px)}
   </div>
 </section>
 
+<!-- ============ МЕНЮ (включается в админке) ============ -->
+<section class="mn" id="menu" hidden>
+  <div class="wrap">
+    <div class="head c rv-in">
+      <span class="kicker">Меню</span>
+      <h2 id="mnH"></h2>
+      <p id="mnLead"></p>
+    </div>
+    <div class="mblk" id="bqBlk" hidden>
+      <h3 class="mh" id="bqH"></h3>
+      <div class="mcalc rv-in"><label for="bqG">Сколько гостей?</label><input type="range" id="bqG" min="10" max="300" step="5" value="100" aria-label="Количество гостей"><output id="bqGo">100</output></div>
+      <div class="pks" id="pks"></div>
+    </div>
+    <div class="mblk" id="dsBlk" hidden>
+      <h3 class="mh" id="dsH"></h3>
+      <div class="mcats" id="mcats" role="tablist" aria-label="Разделы меню"></div>
+      <div class="dg" id="dg"></div>
+    </div>
+    <div class="mblk" id="svBlk" hidden>
+      <h3 class="mh" id="svH">Дополнительно <em>к празднику</em></h3>
+      <div class="svl" id="svl"></div>
+    </div>
+    <div class="mn-cta"><a href="#book" class="btn btn-gold"><svg><use href="#i-cal"/></svg>Забронировать дату</a><a class="btn btn-wa" data-wa href="#"><svg><use href="#i-wa"/></svg>Спросить администратора</a></div>
+  </div>
+</section>
+
 <!-- ============ ФОТО ЗАЛА ============ -->
 <section class="gal-s" id="gallery">
   <div class="wrap">
@@ -649,7 +786,8 @@ a.ci2:hover{border-color:var(--gold);transform:translateX(4px)}
           <span class="fl">Количество гостей</span>
           <div class="gst"><input type="range" id="fRange" min="1" max="300" value="80" aria-label="Количество гостей"><input class="inp" id="fGuests" type="number" min="1" max="300" value="80" inputmode="numeric" aria-label="Количество гостей"></div>
           <div class="warn" id="gWarn" hidden></div>
-          <div id="fCorp" hidden><span class="fl">Меню корпоратива</span><div class="chips" id="fMenu"></div></div>
+          <div id="fCorp" hidden><span class="fl" id="fMenuL">Меню корпоратива</span><div class="chips" id="fMenu"></div></div>
+          <div id="fX" hidden><details class="xtr" id="xtr"><summary>Добавить блюда и услуги <small id="fXn"></small></summary><div class="xl" id="fXl"></div></details></div>
           <div class="est" id="est" hidden><span id="estTxt">Предварительно</span><b id="estSum">—</b></div>
           <div class="calnote" id="fInfo" style="margin-top:16px"></div>
           <div class="giftok" id="giftOk" hidden></div>
@@ -691,6 +829,14 @@ a.ci2:hover{border-color:var(--gold);transform:translateX(4px)}
   </div>
 </section>
 
+<!-- ============ ВОПРОСЫ (включается в админке) ============ -->
+<section id="faq" hidden>
+  <div class="wrap">
+    <div class="head c rv-in"><span class="kicker">Вопросы</span><h2>Частые <em>вопросы</em></h2></div>
+    <div class="faq" id="faqL"></div>
+  </div>
+</section>
+
 <!-- ============ КОНТАКТЫ ============ -->
 <section id="contacts" style="padding-top:20px">
   <div class="wrap">
@@ -720,7 +866,7 @@ a.ci2:hover{border-color:var(--gold);transform:translateX(4px)}
 <footer class="ft">
   <div class="wrap">
     <div><img class="lg" data-logo src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Emirat" loading="lazy"><p style="margin-top:14px;font-size:14px">Банкетный ресторан в Петропавловске: тои, юбилеи, корпоративы и поминальные обеды.</p></div>
-    <div><h4>Разделы</h4><nav><a href="#corp">Корпоративы</a><a href="#gallery">Фото зала</a><a href="#book">Даты и бронь</a><a href="#reviews">Отзывы</a><a href="#contacts">Контакты</a></nav></div>
+    <div><h4>Разделы</h4><nav><a href="#corp">Корпоративы</a><a href="#menu" hidden>Меню</a><a href="#gallery">Фото зала</a><a href="#book">Даты и бронь</a><a href="#reviews">Отзывы</a><a href="#contacts">Контакты</a></nav></div>
     <div><h4>Связь</h4><nav id="ftContacts"></nav></div>
     <div class="cp"><span>© <span id="yr"></span> Ресторан Emirat</span><span id="credit"></span> <a href="admin.html" style="opacity:.55">Вход для администратора</a></div>
   </div>
@@ -740,14 +886,16 @@ a.ci2:hover{border-color:var(--gold);transform:translateX(4px)}
   <div class="lb-c" aria-live="polite"></div>
 </div>
 
-<script src="js/store.js?v=1"></script>
+<script src="js/store.js?v=2"></script>
 <script>
 /* =====================================================================
    ДАННЫЕ САЙТА EMIRAT. Всё редактируется в админке (admin.html) и хранится на сервере.
    Если сервер недоступен — берутся данные из data/site.json.
    ===================================================================== */
-let D, CONFIG, GIFT, TYPES, MENUS = [], CORP, REVIEWS = [], IMG = {}, PH = {}, PHOTOS = [], TAGS = {};
+let D, CONFIG, GIFT, TYPES, CORP, REVIEWS = [], IMG = {}, PH = {}, PHOTOS = [], TAGS = {};
+let MENUS_CORP = [], MENUS_BQ = [], BQ = { on: false, packs: [] }, DISH = { on: false, cats: [], items: [] }, XON = false, SVC = [], XTRA = [], FAQ = [];
 const CORP_TYPE = 'Корпоратив';
+const DISCUSS = { label: 'Меню обсудим с администратором', name: 'Меню обсудим с администратором', price: 0, min: 0 };
 function applyData(d) {
   D = d; const s = d.settings;
   CONFIG = { admin: s.admin, phones: s.phones, address: s.address || '', city: s.city || '', hours: s.hours || '', hoursShort: s.hoursShort || '',
@@ -757,10 +905,25 @@ function applyData(d) {
   CORP = { on: d.corp.on && d.corp.variants.length > 0, title: d.corp.title || 'Новогодние корпоративы', show: d.corp.show,
     variants: d.corp.variants.map((v, i) => ({ ...v, menu: i, poster: v.poster ? 'v' + i : '', start: d.corp.start || '' })) };
   IMG = {}; d.corp.variants.forEach((v, i) => { if (v.poster) IMG['v' + i] = Store.img(v.poster); });
-  MENUS = CORP.on ? CORP.variants.map(v => ['Корпоратив — меню ' + money(v.price), v.price]).concat([['Меню обсудим с администратором', 0]]) : [['Меню обсудим с администратором', 0]];
+  MENUS_CORP = (CORP.on ? CORP.variants.map(v => ({ label: 'меню ' + money(v.price), name: 'Корпоратив — меню ' + money(v.price), price: v.price, min: 0 })) : []).concat([DISCUSS]);
   REVIEWS = d.reviews.map(r => [r.name || '', r.date || '', r.text || '']);
   PH = {}; TAGS = {}; PHOTOS = d.photos.map((p, i) => { const k = 'p' + i; PH[k] = Store.img(p.img); if (p.tag) TAGS[k] = p.tag; return [k, p.t || '', p.s || '', p.cat || 'hall']; });
+  // банкетные меню, блюда, доп. услуги — показываются, только если включены в админке
+  const bq = d.banquet || {}, ds = d.dishes || {};
+  const packs = (bq.packs || []).filter(p => p.n && !p.off);
+  BQ = { on: !!bq.on && packs.length > 0, title: bq.title || 'Банкетное меню', lead: bq.lead || '', packs };
+  MENUS_BQ = (BQ.on ? packs.map(p => ({ label: p.n + (p.p ? ' — ' + money(p.p) : ''), name: `Банкетное меню «${p.n}»` + (p.p ? ' — ' + money(p.p) : ''), price: p.p, min: p.min, id: p.id })) : []).concat([DISCUSS]);
+  const items = (ds.items || []).filter(x => x.n && !x.off).map(x => ({ ...x, src: x.img ? Store.img(x.img) : '' }));
+  const cats = (ds.cats || []).filter(c => items.some(x => x.cat === c));
+  items.forEach(x => { if (!cats.includes(x.cat)) cats.push(x.cat); });
+  DISH = { on: !!ds.on && items.length > 0, title: ds.title || 'Меню ресторана', cats, items };
+  XON = !!(d.extra && d.extra.on);
+  SVC = (d.services || []).filter(s => s.n && !s.off);
+  XTRA = XON ? items.filter(x => x.add).map(x => ({ k: 'd:' + x.id, n: x.n, sub: x.w, p: x.p, per: 'pcs' }))
+    .concat(SVC.map(s => ({ k: 's:' + s.id, n: s.n, sub: s.d, p: s.p, per: s.per }))) : [];
+  FAQ = d.faq && d.faq.on ? (d.faq.items || []).filter(f => f.q && f.a) : [];
 }
+const perTxt = (p, per) => p ? money(p) + (per === 'guest' ? ' за гостя' : per === 'pcs' ? ' за шт.' : '') : 'цена по запросу';
 const CATS = [['all', 'Все'], ['hall', 'Зал'], ['trad', 'Традиции'], ['show', 'Шоу от шефа'], ['party', 'Праздник']];
 
 /* ================= ПОМОЩНИКИ ================= */
@@ -840,13 +1003,21 @@ const giftType = type => !GIFT.noTypes.includes(type);
 const giftFor = (type, guests, date) => giftType(type) && guests >= GIFT.minGuests && !!date && GIFT.weekend.includes(dow(date));
 
 /* ================= БРОНЬ: отправка ================= */
+/* доп. блюда и услуги, выбранные гостем */
+let XQ = {};
+function xSum(g) {
+  const list = XTRA.filter(x => XQ[x.k] > 0).map(x => { const q = XQ[x.k]; return { k: x.k, n: x.n, q, p: x.p, per: x.per, sum: x.per === 'guest' ? x.p * g * q : x.p * q }; });
+  return { list, sum: list.reduce((a, x) => a + x.sum, 0) };
+}
+const xLine = x => x.n + (x.per === 'pcs' && x.q > 1 ? ' ×' + x.q : '');
 function bookingText(b, id) {
-  const m = b.menu >= 0 ? MENUS[b.menu] : null;
+  const m = b.m, xs = b.xs, tot = m.price * b.guests + xs.sum;
   return [`Здравствуйте! Заявка на бронь с сайта Emirat${id ? ` №${id}` : ''}`,
     `Дата: ${human(b.date)}${b.time ? ', ' + b.time : ''}`,
     `Гостей: ${b.guests}`, `Мероприятие: ${b.type}`,
-    m ? `Меню: ${m[0]}` : '',
-    m && m[1] ? `Предварительно: ${money(m[1] * b.guests)}` : '',
+    b.menuName ? `Меню: ${b.menuName}` : '',
+    xs.list.length ? `Дополнительно: ${xs.list.map(x => xLine(x) + (x.sum ? ` (${money(x.sum)})` : '')).join(', ')}` : '',
+    tot ? `Предварительно: ${money(tot)}` : '',
     giftFor(b.type, b.guests, b.date) ? '🎁 Акция: фуршетный и детский стол в подарок' : '',
     `Имя: ${b.name}`, `Телефон: ${b.phone}`, b.comment ? `Комментарий: ${b.comment}` : ''
   ].filter(Boolean).join('\n').replace(/ /g, ' ');
@@ -855,10 +1026,11 @@ function bookingText(b, id) {
 async function submitBooking(b, source) {
   if (b.website) return { ok: true, id: null };
   if (isBusy(b.date)) return { ok: false, busy: true, error: 'Эта дата уже занята — выберите другую' };
-  const m = b.menu >= 0 ? MENUS[b.menu] : null;
-  const r = await Store.createOrder({ kind: 'booking', via: source, date: b.date, time: b.time, guests: b.guests, type: b.type, menu: m ? m[0] : '', price: (m && m[1]) || 0,
-    total: (m && m[1]) ? m[1] * b.guests : 0, name: b.name, phone: b.phone, comment: b.comment,
-    when: b.type + (m ? ' · ' + m[0] : '') + (giftFor(b.type, b.guests, b.date) ? ' · 🎁 акция' : '') });
+  const m = b.m, xs = b.xs, xt = xs.list.map(xLine).join(', ');
+  const r = await Store.createOrder({ kind: 'booking', via: source, date: b.date, time: b.time, guests: b.guests, type: b.type,
+    menu: [b.menuName, xt ? 'доп.: ' + xt : ''].filter(Boolean).join(' + '), menu_name: b.menuName, price: m.price || 0,
+    extras: xs.list, extras_sum: xs.sum, total: (m.price || 0) * b.guests + xs.sum, name: b.name, phone: b.phone, comment: b.comment,
+    when: b.type + (b.menuName ? ' · ' + b.menuName : '') + (xt ? ' · доп.' : '') + (giftFor(b.type, b.guests, b.date) ? ' · 🎁 акция' : '') });
   return r ? { ok: true, id: r.id || null } : { ok: false, offline: true };
 }
 
@@ -939,6 +1111,67 @@ function corpCalc() {
   $$('[data-sumtxt]').forEach(s => s.textContent = `Итого на ${g} гостей`);
 }
 
+/* ---------- меню: банкетные меню, блюда, услуги ---------- */
+const hTitle = s => { const t = String(s || '').trim().split(' '), last = t.pop() || ''; return (t.length ? esc(t.join(' ')) + ' ' : '') + `<em>${esc(last)}</em>`; };
+const liTxt = s => { const i = s.indexOf(':'); return `<li><div>${i > 0 && i < 40 ? `<b>${esc(s.slice(0, i + 1))}</b>${esc(s.slice(i + 1))}` : esc(s)}</div></li>`; };
+let MCAT = null;
+function renderMenu() {
+  const sBq = BQ.on, sDs = DISH.on, sSv = XON && SVC.length > 0, any = sBq || sDs || sSv;
+  $('#menu').hidden = !any; $$('a[href="#menu"]').forEach(a => a.hidden = !any);
+  if (!any) return;
+  const first = sBq ? 'bq' : sDs ? 'ds' : 'sv';
+  $('#mnH').innerHTML = hTitle(first === 'bq' ? BQ.title : first === 'ds' ? DISH.title : 'Дополнительно к празднику');
+  $('#mnLead').textContent = first === 'bq' ? BQ.lead : ''; $('#mnLead').hidden = !$('#mnLead').textContent;
+  $('#bqBlk').hidden = !sBq; $('#dsBlk').hidden = !sDs; $('#svBlk').hidden = !sSv;
+  $('#bqH').hidden = first === 'bq'; $('#bqH').innerHTML = hTitle(BQ.title);
+  $('#dsH').hidden = first === 'ds'; $('#dsH').innerHTML = hTitle(DISH.title);
+  $('#svH').hidden = first === 'sv';
+  if (sBq) {
+    $('#pks').innerHTML = BQ.packs.map((p, i) => `
+      <article class="pk rv-in" style="--d:${(i % 3) * .08}s">
+        <div class="pk-h"><span class="l">${esc(p.n)}</span><b>${p.p ? `${money(p.p)}<small>за гостя</small>` : 'Цена по запросу'}</b>${p.min || p.note ? `<div class="pk-tags">${p.min ? `<span>от ${p.min} гостей</span>` : ''}${p.note ? `<span>${esc(p.note)}</span>` : ''}</div>` : ''}</div>
+        ${p.items.length ? `<ul>${p.items.map(liTxt).join('')}</ul>` : '<ul></ul>'}
+        <div class="pk-f">${p.p ? `<div class="pk-s"><span data-pkt="${i}"></span><b data-pk="${i}"></b></div>` : ''}<button type="button" class="btn btn-gold btn-block" data-bq-book="${esc(p.id)}"><svg><use href="#i-cal"/></svg>Забронировать с этим меню</button></div>
+      </article>`).join('');
+    bqCalc();
+  }
+  if (sDs) renderDishes();
+  if (sSv) $('#svl').innerHTML = SVC.map(s => `<div class="svi rv-in"><div class="n"><b>${esc(s.n)}</b>${s.d ? `<small>${esc(s.d)}</small>` : ''}</div><div class="p">${s.p ? money(s.p) : 'по запросу'}${s.p && s.per !== 'fix' ? `<small>${s.per === 'guest' ? 'за гостя' : 'за штуку'}</small>` : ''}</div></div>`).join('');
+}
+function bqCalc() {
+  const g = +$('#bqG').value; $('#bqGo').textContent = g;
+  BQ.packs.forEach((p, i) => { const n = Math.max(g, p.min || 0), b = $(`[data-pk="${i}"]`), t = $(`[data-pkt="${i}"]`);
+    if (b) b.textContent = money(p.p * n); if (t) t.textContent = n > g ? `минимум ${n} гостей` : `Итого на ${n} гостей`; });
+}
+function renderDishes() {
+  const hits = DISH.items.filter(x => x.hit), cats = DISH.cats;
+  const chips = (hits.length >= 2 ? [['_hit', '★ Хиты', hits.length]] : []).concat(cats.map(c => [c, c, DISH.items.filter(x => x.cat === c).length]));
+  if (!MCAT || !chips.some(c => c[0] === MCAT)) MCAT = chips[0][0];
+  $('#mcats').innerHTML = chips.map(([k, t, n]) => `<button type="button" role="tab" data-mcat="${esc(k)}" class="${k === MCAT ? 'on' : ''}" aria-selected="${k === MCAT}">${esc(t)}<small>${n}</small></button>`).join('');
+  const list = MCAT === '_hit' ? hits : DISH.items.filter(x => x.cat === MCAT);
+  $('#dg').innerHTML = list.map((x, i) => `<article class="dc" style="animation-delay:${Math.min(i, 10) * 40}ms">${x.src ? `<button type="button" class="ph" data-dph="${esc(x.id)}" aria-label="Фото: ${esc(x.n)}"><img src="${esc(x.src)}" alt="${esc(x.n)}" loading="lazy" decoding="async"></button>` : `<div class="ph no" aria-hidden="true"><span>${esc(x.n.trim()[0] || '')}</span></div>`}<div class="bd">${x.hit || (XON && x.add) ? `<div class="bdgs">${x.hit ? '<i class="h">★ Хит</i>' : ''}${XON && x.add ? '<i>можно к банкету</i>' : ''}</div>` : ''}<h4>${esc(x.n)}</h4>${x.d ? `<p>${esc(x.d)}</p>` : ''}<div class="pr"><b>${x.p ? money(x.p) : 'по запросу'}</b>${x.w ? `<span>${esc(x.w)}</span>` : ''}</div></div></article>`).join('');
+}
+function renderFaq() {
+  $('#faq').hidden = !FAQ.length;
+  if (!FAQ.length) return;
+  $('#faqL').innerHTML = FAQ.map(f => `<details class="rv-in"><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join('');
+  const ld = document.createElement('script'); ld.type = 'application/ld+json';
+  ld.textContent = JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: FAQ.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) });
+  document.head.appendChild(ld);
+}
+function renderNotice() {
+  const n = D.notice || {}, el = $('#nbar'), root = document.documentElement; let closed = false;
+  try { closed = sessionStorage.getItem('em-nb') === n.text; } catch (e) {}
+  const on = !!(n.on && n.text && !closed);
+  el.hidden = !on; root.classList.toggle('has-nb', on);
+  if (!on) return;
+  const link = /^(#|https?:\/\/|\/)/.test(n.link || '') ? n.link : '';
+  $('#nbT').innerHTML = link ? `<a href="${esc(link)}"${/^https?:/.test(link) ? ' target="_blank" rel="noopener"' : ''}>${esc(n.text)}</a>` : esc(n.text);
+  const fit = () => root.style.setProperty('--nbh', el.offsetHeight + 'px');
+  fit(); addEventListener('resize', fit, { passive: true });
+  $('#nbX').addEventListener('click', () => { el.hidden = true; root.classList.remove('has-nb'); try { sessionStorage.setItem('em-nb', n.text); } catch (e) {} });
+}
+
 /* ---------- календарь ---------- */
 let calM = null, selDate = null;
 function renderCal() {
@@ -966,34 +1199,50 @@ function pickDate(s) {
 }
 
 /* ---------- форма ---------- */
-let fMenu = -1;
+let fMenu = -1, fKind = null;
 const isCorp = () => $('#fType').value === CORP_TYPE;
+const curMenus = () => isCorp() ? MENUS_CORP : MENUS_BQ;
+const curMenu = () => curMenus()[fMenu] || DISCUSS;
 function renderForm() {
   const h0 = +String(D.settings.timeFrom).split(':')[0] || 10, h1 = Math.max(h0, +String(D.settings.timeTo).split(':')[0] || 22);
   $('#fTime').innerHTML = Array.from({ length: h1 - h0 + 1 }, (_, i) => `${pad(h0 + i)}:00`).map(t => `<option ${t === '18:00' ? 'selected' : ''}>${t}</option>`).join('');
-  $('#fType').innerHTML = TYPES.map(t => `<option>${t}</option>`).join('');
-  $('#fMenu').innerHTML = MENUS.map((m, i) => `<button type="button" data-menu="${i}">${esc(m[0].replace('Корпоратив — ', ''))}</button>`).join('');
-  syncType();
+  $('#fType').innerHTML = TYPES.map(t => `<option>${esc(t)}</option>`).join('');
+  syncType(); paintX();
 }
-/* Меню и сумма показываются только для корпоратива — по остальным праздникам меню обсуждают с администратором */
+/* Корпоратив — меню корпоратива. Остальные праздники — банкетные меню, если они включены в админке; иначе меню обсуждают с администратором */
 function syncType() {
-  const corp = isCorp();
-  if (corp && fMenu < 0) fMenu = 0;
-  if (!corp) fMenu = -1;
-  $('#fCorp').hidden = !corp;
-  $$('#fMenu button').forEach(b => b.classList.toggle('on', +b.dataset.menu === fMenu));
+  const corp = isCorp(), list = curMenus(), kind = corp ? 'c' : 'b';
+  if (kind !== fKind) { fKind = kind; fMenu = corp ? 0 : list.length - 1; }
+  if (fMenu >= list.length) fMenu = list.length - 1;
+  $('#fCorp').hidden = list.length < 2;
+  $('#fMenuL').textContent = corp ? 'Меню корпоратива' : BQ.title;
+  $('#fMenu').innerHTML = list.map((m, i) => `<button type="button" data-menu="${i}" class="${i === fMenu ? 'on' : ''}">${esc(m.label)}</button>`).join('');
   est();
 }
 function setMenu(i) { fMenu = i; $$('#fMenu button').forEach(b => b.classList.toggle('on', +b.dataset.menu === i)); est(); }
+function paintX() {
+  $('#fX').hidden = !XTRA.length;
+  if (!XTRA.length) return;
+  $('#fXl').innerHTML = XTRA.map(x => {
+    const q = XQ[x.k] || 0, pr = `<b>${perTxt(x.p, x.per)}</b>`;
+    const ctl = x.per === 'pcs'
+      ? (q ? `<span class="xs"><button type="button" data-xq="${esc(x.k)}|-1" aria-label="Меньше">−</button><b>${q}</b><button type="button" data-xq="${esc(x.k)}|1" aria-label="Больше">+</button></span>` : `<button type="button" class="xadd" data-xq="${esc(x.k)}|1">Добавить</button>`)
+      : `<button type="button" class="xadd${q ? ' on' : ''}" data-xt="${esc(x.k)}" aria-pressed="${!!q}">${q ? '✓ Добавлено' : 'Добавить'}</button>`;
+    return `<div class="xr"><div class="n">${esc(x.n)}<small>${x.sub ? esc(x.sub) + ' · ' : ''}${pr}</small></div>${ctl}</div>`;
+  }).join('');
+  const n = Object.keys(XQ).filter(k => XQ[k] > 0).length;
+  $('#fXn').textContent = n ? `выбрано: ${n}` : '';
+}
 function est() {
-  const g = Math.max(1, Math.min(CONFIG.maxGuests, +$('#fGuests').value || 1)), p = fMenu >= 0 ? MENUS[fMenu][1] : 0;
-  $('#est').hidden = !p;
-  if (p) { $('#estTxt').textContent = `${g} гост. × ${money(p)}`; $('#estSum').textContent = money(g * p); }
+  const g = Math.max(1, Math.min(CONFIG.maxGuests, +$('#fGuests').value || 1)), m = curMenu(), p = m.price, xs = xSum(g), tot = p * g + xs.sum;
+  $('#est').hidden = !tot;
+  if (tot) { $('#estTxt').textContent = [p ? `${g} гост. × ${money(p)}` : '', xs.sum ? `доп. ${money(xs.sum)}` : ''].filter(Boolean).join(' + '); $('#estSum').textContent = money(tot); }
   const info = $('#fInfo'); info.hidden = !!p;
   info.textContent = isCorp() ? 'Меню и стоимость корпоратива обсудите с администратором.' : 'Меню и стоимость администратор подберёт под ваш праздник — она свяжется с вами после заявки.';
-  const w = $('#gWarn');
-  w.hidden = g <= CONFIG.capacity;
-  w.textContent = `Больше ${CONFIG.capacity} гостей — расстановку на ${g} человек уточнит администратор (максимум ${CONFIG.maxGuests}).`;
+  const w = $('#gWarn'), warns = [];
+  if (g > CONFIG.capacity) warns.push(`Больше ${CONFIG.capacity} гостей — расстановку на ${g} человек уточнит администратор (максимум ${CONFIG.maxGuests}).`);
+  if (m.min && g < m.min) warns.push(`Меню «${m.label.split(' — ')[0]}» — от ${m.min} гостей.`);
+  w.hidden = !warns.length; w.textContent = warns.join(' ');
   // акция: подарки к банкету
   const gk = $('#giftOk'), ok = giftType($('#fType').value), icon = '<svg><use href="#i-gift"/></svg>';
   let html = '', hint = false;
@@ -1019,7 +1268,8 @@ async function onSubmit(e) {
   if (!(g >= 1 && g <= CONFIG.maxGuests)) return bad($('#fGuests'), `Гостей — от 1 до ${CONFIG.maxGuests}`);
   if (name.value.trim().length < 2) return bad(name, 'Укажите имя');
   if (ph.value.replace(/\D/g, '').length !== 11) return bad(ph, 'Проверьте номер телефона');
-  const b = { date: selDate, time: $('#fTime').value, guests: g, type: $('#fType').value, menu: fMenu, name: name.value.trim(), phone: ph.value, comment: $('#fCom').value.trim(), website: $('#fWeb').value };
+  const m = curMenu(), menuName = m === DISCUSS && curMenus().length < 2 ? '' : m.name;
+  const b = { date: selDate, time: $('#fTime').value, guests: g, type: $('#fType').value, m, xs: xSum(g), menuName, name: name.value.trim(), phone: ph.value, comment: $('#fCom').value.trim(), website: $('#fWeb').value };
   // без сервера — сразу открываем WhatsApp администратора (в том же нажатии, чтобы браузер не заблокировал окно)
   sending = true; $('#fBtn').disabled = true; $('#fBtn').lastChild.textContent = 'Отправляем…';
   const r = await submitBooking(b, 'site');
@@ -1047,14 +1297,14 @@ function observe() {
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
   $$('.rv-in').forEach(e => io.observe(e));
   const navIO = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) $$('.nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id)); }), { rootMargin: '-45% 0px -50% 0px' });
-  ['corp', 'gallery', 'book', 'reviews', 'contacts'].forEach(id => navIO.observe(document.getElementById(id)));
+  ['corp', 'menu', 'gallery', 'book', 'reviews', 'faq', 'contacts'].map(id => document.getElementById(id)).filter(el => el && !el.hidden).forEach(el => navIO.observe(el));
 }
 
 /* ================= ЗАПУСК ================= */
 Store.load().then(d => { applyData(d); init(); }).catch(() => { document.body.insertAdjacentHTML('afterbegin', '<p style="padding:20px;text-align:center">Не удалось загрузить сайт. Обновите страницу.</p>'); });
 function init() {
   $$('[data-logo]').forEach(i => i.src = $('#logoImg').src);
-  renderStatic(); renderDyn(); renderGal(); renderCorp(); renderForm(); loadAvailability(); renderCal(); observe();
+  renderNotice(); renderStatic(); renderDyn(); renderGal(); renderCorp(); renderMenu(); renderFaq(); renderForm(); loadAvailability(); renderCal(); observe();
 
   document.addEventListener('click', e => {
     const t = e.target;
@@ -1064,11 +1314,23 @@ function init() {
     const gf = t.closest('[data-gf]'); if (gf) { if (GF !== gf.dataset.gf) { GF = gf.dataset.gf; renderGal(); } return; }
     const day = t.closest('.day[data-day]'); if (day && !day.disabled) return pickDate(day.dataset.day);
     const mb = t.closest('[data-menu]'); if (mb) return setMenu(+mb.dataset.menu);
-    const cb = t.closest('[data-corp-book]'); if (cb) { $('#fType').value = CORP_TYPE; fMenu = CORP.variants[+cb.dataset.corpBook].menu; $('#fGuests').value = $('#fRange').value = $('#cGuests').value; syncType(); return $('#book').scrollIntoView({ behavior: 'smooth' }); }
+    const cb = t.closest('[data-corp-book]'); if (cb) { $('#fType').value = CORP_TYPE; $('#fGuests').value = $('#fRange').value = $('#cGuests').value; syncType(); setMenu(CORP.variants[+cb.dataset.corpBook].menu); return $('#book').scrollIntoView({ behavior: 'smooth' }); }
+    const bb = t.closest('[data-bq-book]'); if (bb) {
+      if (isCorp()) $('#fType').value = TYPES.find(x => x !== CORP_TYPE) || TYPES[0];
+      const pk = BQ.packs.find(p => p.id === bb.dataset.bqBook), g = Math.max(+$('#bqG').value, pk && pk.min || 0);
+      $('#fGuests').value = $('#fRange').value = Math.min(CONFIG.maxGuests, g); syncType();
+      const i = MENUS_BQ.findIndex(m => m.id === bb.dataset.bqBook); if (i >= 0) setMenu(i);
+      return $('#book').scrollIntoView({ behavior: 'smooth' });
+    }
+    const xq = t.closest('[data-xq]'); if (xq) { const [k, d] = xq.dataset.xq.split('|'); XQ[k] = Math.max(0, (XQ[k] || 0) + (+d)); if (!XQ[k]) delete XQ[k]; paintX(); return est(); }
+    const xt = t.closest('[data-xt]'); if (xt) { const k = xt.dataset.xt; if (XQ[k]) delete XQ[k]; else XQ[k] = 1; paintX(); return est(); }
+    const mc = t.closest('[data-mcat]'); if (mc) { if (MCAT !== mc.dataset.mcat) { MCAT = mc.dataset.mcat; renderDishes(); } return; }
+    const dp = t.closest('[data-dph]'); if (dp) { const list = (MCAT === '_hit' ? DISH.items.filter(x => x.hit) : DISH.items.filter(x => x.cat === MCAT)).filter(x => x.src); return openLB(list.map(x => ({ src: x.src, t: x.n, s: [x.w, x.p ? money(x.p) : ''].filter(Boolean).join(' · '), tags: x.d || '' })), list.findIndex(x => x.id === dp.dataset.dph)); }
     const po = t.closest('[data-poster]'); if (po) { const v = CORP.variants.find(x => x.poster === po.dataset.poster); return openLB([{ src: IMG[po.dataset.poster], t: 'Афиша новогоднего корпоратива', s: v ? `Меню ${money(v.price)} за гостя · шоу-программа включена` : '' }], 0); }
     if (t.closest('.mnav a, .mnav .x')) toggleNav(false);
   });
   $('#cGuests').addEventListener('input', corpCalc);
+  $('#bqG').addEventListener('input', bqCalc);
   const lf = $('.lb-f');
   lf.addEventListener('pointerdown', e => { LB.x0 = e.clientX; LB.y0 = e.clientY; });
   lf.addEventListener('pointerup', e => { if (LB.x0 == null) return; const dx = e.clientX - LB.x0, dy = e.clientY - LB.y0; LB.x0 = null; if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) lbGo(dx < 0 ? 1 : -1); });

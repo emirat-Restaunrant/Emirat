@@ -53,6 +53,35 @@ window.Store = (function () {
   }
 
   function arr(x) { return Array.isArray(x) ? x : []; }
+  function isObj(x) { return !!x && typeof x === 'object' && !Array.isArray(x); }
+  function obj(x) { return isObj(x) ? x : {}; }
+  function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
+  var DEF_CATS = ['Холодные закуски', 'Салаты', 'Горячие блюда', 'Национальные блюда', 'Гарниры', 'Выпечка и десерты', 'Напитки'];
+  var PER = ['fix', 'guest', 'pcs'];
+  /* новые разделы: блюда, банкетные меню, доп. услуги, объявление, вопросы.
+     На сайте всё это выключено, пока администратор не включит переключатель в админке. */
+  function normalizeExtra(d) {
+    var ds = d.dishes = obj(d.dishes);
+    ds.on = ds.on === true; ds.title = ds.title || 'Меню ресторана';
+    ds.cats = arr(ds.cats).map(function (c) { return String(c == null ? '' : c); });
+    if (!ds.cats.length) ds.cats = DEF_CATS.slice();
+    ds.items = arr(ds.items).filter(isObj);
+    ds.items.forEach(function (x) {
+      x.id = x.id || uid(); x.n = x.n || ''; x.d = x.d || ''; x.w = x.w || ''; x.img = x.img || '';
+      x.p = +x.p || 0; x.cat = x.cat == null ? ds.cats[0] : String(x.cat);
+      x.hit = !!x.hit; x.off = !!x.off; x.add = !!x.add;
+    });
+    var bq = d.banquet = obj(d.banquet);
+    bq.on = bq.on === true; bq.title = bq.title || 'Банкетное меню'; bq.lead = bq.lead || '';
+    bq.packs = arr(bq.packs).filter(isObj);
+    bq.packs.forEach(function (p) { p.id = p.id || uid(); p.n = p.n || ''; p.p = +p.p || 0; p.min = +p.min || 0; p.items = arr(p.items); p.note = p.note || ''; p.off = !!p.off; });
+    var ex = d.extra = obj(d.extra); ex.on = ex.on === true;
+    d.services = arr(d.services).filter(isObj);
+    d.services.forEach(function (s) { s.id = s.id || uid(); s.n = s.n || ''; s.d = s.d || ''; s.p = +s.p || 0; if (PER.indexOf(s.per) < 0) s.per = 'fix'; s.off = !!s.off; });
+    var nt = d.notice = obj(d.notice); nt.on = nt.on === true; nt.text = nt.text || ''; nt.link = nt.link || '';
+    var fq = d.faq = obj(d.faq); fq.on = fq.on === true; fq.items = arr(fq.items).filter(isObj);
+    fq.items.forEach(function (x) { x.q = x.q || ''; x.a = x.a || ''; });
+  }
   function normalize(d) {
     d = d || {};
     var s = d.settings = d.settings || {};
@@ -69,6 +98,7 @@ window.Store = (function () {
     d.photos = arr(d.photos).filter(function (p) { return p && p.img; });
     d.busy = arr(d.busy).filter(function (x) { return /^\d{4}-\d{2}-\d{2}$/.test(x); });
     d.rev = +d.rev || 1;
+    normalizeExtra(d);
     return d;
   }
 
@@ -109,7 +139,7 @@ window.Store = (function () {
   function changePassword(pw) { return req('/password', { method: 'POST', auth: true, body: { password: pw } }); }
 
   return {
-    load: load, save: save, reset: reset, fromFile: fromFile, normalize: normalize, img: img,
+    load: load, save: save, reset: reset, fromFile: fromFile, normalize: normalize, img: img, uid: uid,
     createOrder: createOrder, listOrders: listOrders, setStatus: setStatus, tgInfo: tgInfo, tgLink: tgLink, tgOff: tgOff,
     upload: upload, removeImg: removeImg,
     login: login, logout: logout, authed: authed, changePassword: changePassword, api: API
