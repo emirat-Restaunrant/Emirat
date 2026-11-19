@@ -372,6 +372,9 @@ function vCorp(){
   $('#view').innerHTML='<h2 class="t">Корпоративы</h2>'+
     '<div class="card">'+SW('Показывать блок корпоративов на сайте','corp.on')+F('Заголовок','corp.title',{ph:'Новогодние корпоративы'})+F('Строка про старт','corp.start',{ph:'Старт новогодних корпоративов с 19 декабря!'})+
       '<label class="fld">Шоу-программа — каждый пункт с новой строки'+lines('corp.show',c.show)+'</label><p class="muted">Выключите блок после праздников — он исчезнет с сайта, а меню сохранится до следующего раза.</p></div>'+
+    '<div class="card"><h3 class="c">🍽 Дополнительные блюда к корпоративному меню</h3>'+SW('Показывать на сайте в блоке корпоративов','corp.more.on')+F('Заголовок','corp.more.title',{ph:'Дополнительные блюда'})+
+      '<label class="fld">Блюда — каждое с новой строки: название | вес | цена<textarea data-more rows="7" placeholder="Манты | 1 порция · 300 г | 3000">'+esc(c.more.items.map(function(x){return x.n+' | '+x.w+' | '+x.p;}).join('\n'))+'</textarea></label>'+
+      F('Примечание под списком','corp.more.note',{ph:'Блюда оплачиваются отдельно от корпоративного меню. Заказ у администратора ресторана.'})+'<p class="muted">Цена — просто число без пробелов (например, 13000). Чтобы убрать блюдо, удалите его строку.</p></div>'+
     c.variants.map(function(v,i){
       return '<div class="card"><div class="row" style="margin-bottom:8px"><h3 class="c" style="margin:0">Меню '+(i+1)+'</h3><button class="btn s r" data-vdel="'+i+'" style="margin-left:auto">Удалить меню</button></div>'+
         F('Цена за гостя, ₸','corp.variants.'+i+'.price',{num:1})+
@@ -714,6 +717,7 @@ document.addEventListener('input',function(e){
   var el=e.target;
   if(el.dataset.b){var v;if(el.type==='checkbox')v=el.checked;else if(el.dataset.num)v=+String(el.value).replace(/\s/g,'')||0;else if(el.dataset.list)v=el.value.split(/,/).map(function(x){return x.trim();}).filter(Boolean);else v=el.value;setPath(D,el.dataset.b,v);touch();}
   else if(el.dataset.lines){setPath(D,el.dataset.lines,el.value.split('\n').map(function(x){return x.trim();}).filter(Boolean));touch();}
+  else if(el.dataset.more!==undefined){D.corp.more.items=el.value.split('\n').filter(function(x){return x.trim();}).map(function(l){var p=l.split('|').map(function(x){return x.trim();}),n=p[0],w='',pr=0;if(p.length>=3){w=p.slice(1,-1).join(' | ');pr=+String(p[p.length-1]).replace(/[^\d]/g,'')||0;}else if(p.length===2){if(/^[\d\s]+(₸|тг|тенге)?$/i.test(p[1]))pr=+p[1].replace(/[^\d]/g,'')||0;else w=p[1];}return {n:n,w:w,p:pr};});touch();}
   else if(el.dataset.hot){D.corp.variants[+el.dataset.hot].hot=el.value.split('\n').filter(function(x){return x.trim();}).map(function(l){var p=l.split('|');return {n:p[0].trim(),sub:p.slice(1).join('|').trim()};});touch();}
   else if(el.dataset.q!==undefined){var k=el.dataset.q;Q[k]=/^(guests|price|pct|disc|pre)$/.test(k)?(+String(el.value).replace(/[^\d]/g,'')||0):el.value;saveQ();if(k==='menu'&&$('#qCustom'))$('#qCustom').hidden=Q.menu!=='custom';paintQ();}
   else if(el.id==='qds')paintQ();

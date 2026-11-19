@@ -58,6 +58,15 @@ window.Store = (function () {
   function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
   var DEF_CATS = ['Холодные закуски', 'Салаты', 'Горячие блюда', 'Национальные блюда', 'Гарниры', 'Выпечка и десерты', 'Напитки'];
   var PER = ['fix', 'guest', 'pcs'];
+  var DEF_MORE = [
+    { n: 'Фаршированная горбуша', w: '1,5–2 кг', p: 20000 },
+    { n: 'Курица по-грузински', w: '1–1,5 кг', p: 13000 },
+    { n: 'Гусь, запечённый с яблоками и картофелем', w: '3–4,5 кг', p: 35000 },
+    { n: 'Запечённая баранья ножка с хрустящей корочкой', w: '2–3,5 кг', p: 55000 },
+    { n: 'Манты', w: '1 порция · 300 г', p: 3000 },
+    { n: 'Судак в кисло-сладком соусе', w: '1,5–2 кг', p: 30000 }
+  ];
+  var DEF_MORE_NOTE = 'Блюда оплачиваются отдельно от корпоративного меню. Заказ у администратора ресторана.';
   /* новые разделы: блюда, банкетные меню, доп. услуги, объявление, вопросы.
      На сайте всё это выключено, пока администратор не включит переключатель в админке. */
   function normalizeExtra(d) {
@@ -94,6 +103,11 @@ window.Store = (function () {
     d.types = arr(d.types); if (!d.types.length) d.types = ['Той / свадьба', 'Юбилей', 'День рождения', 'Корпоратив', 'Другое'];
     var c = d.corp = d.corp || {}; c.on = c.on !== false; c.show = arr(c.show);
     c.variants = arr(c.variants).map(function (v) { v.price = +v.price || 0; v.snacks = arr(v.snacks); v.salads = arr(v.salads); v.hot = arr(v.hot); return v; });
+    var mo = c.more = obj(c.more);
+    if (!Array.isArray(mo.items)) mo.items = DEF_MORE.map(function (x) { return { n: x.n, w: x.w, p: x.p }; });
+    mo.on = mo.on !== false; mo.title = mo.title || 'Дополнительные блюда';
+    mo.note = typeof mo.note === 'string' ? mo.note : DEF_MORE_NOTE;
+    mo.items = mo.items.filter(isObj).map(function (x) { return { n: String(x.n || ''), w: String(x.w || ''), p: +x.p || 0 }; });
     d.reviews = arr(d.reviews);
     d.photos = arr(d.photos).filter(function (p) { return p && p.img; });
     d.busy = arr(d.busy).filter(function (x) { return /^\d{4}-\d{2}-\d{2}$/.test(x); });
